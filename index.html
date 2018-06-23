@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="api.js"></script>
+    <title>Giftastic!</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Awesome Search</h1>
+    
+        <!-- Rendered buttons will get dumped Here  -->
+        <div id="buttons-view"></div>
+    
+        <form id="awesome-form">
+          <label for="awesome-input">Add Awesomeness!</label>
+          <input type="text" id="thing-input"><br>
+    
+          <!-- Button triggers new thing to be added -->
+          <input id="add-thing" type="submit" value="Add Awesomeness!">
+        </form>
+    
+        <!-- Awesome things will get dumped here -->
+        <div id="awesome-view"></div>
+</body>
+</html>
