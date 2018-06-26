@@ -1,3 +1,33 @@
 button, div, form, input {
       margin: 5px;
+      text-align:center;
+      font-family: 'Share Tech', sans-serif;
     }
+
+#top {
+  background-color:rgba(236, 146, 42, 0.904);
+  text-align:center;
+  margin:auto;
+  padding:15px;
+  font-size:50px;
+  line-height: 50px;
+  color:white;
+  border-radius: 5px;
+}
+
+#thing-form {
+  margin:auto;
+  text-align:center;
+}
+
+.gif-button {
+  background-color:rgba(236, 146, 42, 0.904);
+  color:white;
+  font-size:15px;
+  border-radius: 5px;
+}
+
+/* tried to make the Submit button font match the rest, didn't work
+#thing-input {
+  font-family: 'Share Tech', sans-serif;
+} */

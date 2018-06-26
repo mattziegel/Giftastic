@@ -10,6 +10,7 @@ $("#buttons").on("click", function() {
     url: queryURL,
     method: "GET"
   })
+
     .then(function(response) {
       var results = response.data;
       console.log(results);
@@ -17,19 +18,38 @@ $("#buttons").on("click", function() {
         var rating = results[i].rating;
         var p = $("<p>").text("Rating: " + rating);
         var gifImage = $("<img>");
+        gifImage.addClass("gif");
         gifImage.attr("src", results[i].images.fixed_height_still.url);
-        gifImage.attr("data-state");
+        gifImage.attr("data-still", results[i].images.fixed_height_still.url);
+        gifImage.attr("data-animate", results[i].images.fixed_height.url);
+        gifImage.attr("data-state", "still");
         $("#gifs").prepend(p);
         $("#gifs").prepend(gifImage);
       }
-    });
+    })
+
+    $(".gif").on("click", function() {
+      var state = $(this).attr("data-state");
+      console.log(state);
+
+      if (state === "still") {
+        $(this).attr("src", $(this).data("animate"));
+        $(this).attr("data-state", "animate");
+      } 
+      
+      else if (state === "animate") {
+        $(this).attr("src", $(this).data("still"));
+        $(this).attr("data-state", "still");
+      }
+    })
+
 });
 
 function renderButtons() {
   $("#buttons").empty();
   for (var i = 0; i < topics.length; i++) {
     var button = $("<button>");
-    button.addClass("gif");
+    button.addClass("gif-button");
     button.attr("data-name", topics[i]);
     button.text(topics[i]);
     $("#buttons").append(button);
@@ -45,3 +65,4 @@ $("#add-thing").on("click", function (event) {
 })
 
 renderButtons();
+
