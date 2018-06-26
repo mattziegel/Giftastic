@@ -1,73 +1,47 @@
+var topics = ["Cat", "Tacos", "Dog", "High Five", "Betty White", "Karate", "Pizza", "Samuel L. Jackson", "Earth", "Columbo", "Football", "Daffy Duck", "Nope", "Banana", "Basketball", "Spacesip", "Shark", "Owl", "Dancing", "Fireworks", "Ice Cream", "Pugs", "Waves", "Math", "Wink", "Wood Turning", "Panda", "Laughing", "Raccoon", "Crying"];
+console.log(topics);
 
-var aweThings = ["Earth", "Cats", "Dogs", "Samuel L. Jackson"];
+$("#buttons").on("click", function() {
+  var gif = $(this).attr("data-name");
+  var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+    gif + "&api_key=Gtl8YGKTa0pryKVfcYHYpDP7oD4ek6Hx&&s&limit=10";
 
-function alertMovieName() {
-    alert($(this).attr("data-name"));
-  }
-
-  // Function for displaying movie data
-  function renderButtons() {
-
-    // stops creation of repeat buttons
-    $("#buttons-view").empty();
-
-    // Looping through the array of things
-    for (var i = 0; i < aweThings.length; i++) {
-
-      // Then dynamicaly generating buttons for each movie in the array
-      // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
-      var a = $("<button>");
-      // Adding a class
-      a.addClass("thing");
-      // Added a data-attribute
-      a.attr("data-name", aweThings[i]);
-      // Provided the initial button text
-      a.text(aweThings[i]);
-      // Added the button to the HTML
-      $("#buttons-view").append(a);
-    }
-  }
-
-  $("#add-movie").on("click", function(event) {
-
-    // Prevents the submit button from trying to submit the form
-    event.preventDefault();
-
-    // Here we grab the text from the input box
-    var thing = $("#awesome-input").val();
-
-    // Here we construct our URL
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-    thing + "&api_key=dc6zaTOxFJmzC&limit=10";;
-
-    // AJAX call and display it in the div with an id of movie-view
-    $.ajax({
-      url: queryURL,
-      method: "GET"
-      }).then(function(response) {
-        console.log(resonse);
-        var imageUrl = response.data.image_original_url;
-        var aweImage = $("<img>");
-        aweImage.attr("src", imageUrl);
-        aweImage.attr("alt", "cat image");
-        $("#awesome-view").prepend(aweImage);
-     })
-
-     $(document).on("click", ".thing", alertMovieName);
-
-      // Calling the renderButtons function to display the intial buttons
-      renderButtons();
-
-    //pauses or animates gifs
-    var state = $(this).attr("data-state");
-    if (state === "still") {
-        $(this).attr("src", $(this).attr("data-animate"));
-        $(this).attr("data-state", "animate");
-      } 
-      
-      else if (state === "animate") {
-        $(this).attr("src", $(this).attr("data-still"));
-        $(this).attr("data-state", "still");
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  })
+    .then(function(response) {
+      var results = response.data;
+      console.log(results);
+      for (var i = 0; i < results.length; i++) {
+        var rating = results[i].rating;
+        var p = $("<p>").text("Rating: " + rating);
+        var gifImage = $("<img>");
+        gifImage.attr("src", results[i].images.fixed_height_still.url);
+        gifImage.attr("data-state");
+        $("#gifs").prepend(p);
+        $("#gifs").prepend(gifImage);
       }
-
     });
+});
+
+function renderButtons() {
+  $("#buttons").empty();
+  for (var i = 0; i < topics.length; i++) {
+    var button = $("<button>");
+    button.addClass("gif");
+    button.attr("data-name", topics[i]);
+    button.text(topics[i]);
+    $("#buttons").append(button);
+  }
+}
+
+$("#add-thing").on("click", function (event) {
+  event.preventDefault();
+  var thing = $("#thing-input").val().trim();
+  if (!thing) { return };
+  topics.push(thing);
+  renderButtons();
+})
+
+renderButtons();
