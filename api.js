@@ -47,11 +47,11 @@ $(document).ready(function() {
         var p = $("<p>").text("Rating: " + rating);
         var gifImage = $("<img>");
 
-        var gifStill = (results[i].images.fixed_height_still.url);
-        var gifAnimate = (results[i].images.fixed_height.url);
-
-        gifImage.attr("src", gifStill);
-        gifImage.attr("data-state", "still");
+        gifImage.attr("src", results[i].images.fixed_height_still.url);
+-       gifImage.attr("data-state");
++       gifImage.attr("data-still", results[i].images.fixed_height_still.url);
++       gifImage.attr("data-animate", results[i].images.fixed_height.url);
++       gifImage.attr("data-state", "still");
 
         $("#gifs").prepend(p);
         $("#gifs").prepend(gifImage);
@@ -62,14 +62,14 @@ $(document).ready(function() {
     
         console.log (state)
     
-        if (state ==="still") {
+        if (state === "still") {
+            $(this).attr("src", $(this).data("animate"));
             $(this).attr("data-state", "animate");
-            gifImage.attr("src", gifAnimate);
         }
     
-        else if (state==="animate") {
+        else if (state === "animate") {
+            $(this).attr("src", $(this).data("still"));
             $(this).attr("data-state", "still");
-            gifImage.attr("src", gifStill);
         }
     })
 
