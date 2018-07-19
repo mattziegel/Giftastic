@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-  var topics = ["Cat", "Tacos", "Dog", "High Five", "Betty White", "Karate", "Pizza", "Samuel L Jackson", "Earth", "Columbo", "Football", "Daffy Duck", "Nope", "Banana", "Basketball", "Spacesip", "Shark", "Owl", "Dancing", "Fireworks", "Ice Cream", "Pugs", "Waves", "Math", "Wink", "Wood Turning", "Panda", "Laughing", "Raccoon", "Crying"];
+  var topics = ["Cat", "Tacos", "Dog", "High Five", "Betty White", "Karate", "Pizza", "Samuel L Jackson", "Earth", "Columbo", "Football", "Daffy Duck", "Nope", "Banana", "Basketball", "Spaceship", "Shark", "Owl", "Dancing", "Fireworks", "Ice Cream", "Pugs", "Waves", "Math", "Wink", "Wood Turning", "Panda", "Laughing", "Raccoon", "Crying"];
   console.log(topics);
 
   function renderButtons() {
