@@ -27,6 +27,12 @@ button, div, form, input {
   border-radius: 5px;
 }
 
+#gifs {
+  display: inline-grid;
+  grid-column-gap: 5px;
+  grid-row-gap: 5px;
+}
+
 /* tried to make the Submit button font match the rest, didn't work
 #thing-input {
   font-family: 'Share Tech', sans-serif;
